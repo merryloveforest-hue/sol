@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import SectionHeading from './components/SectionHeading';
 import { ArrowRight, Star, ShoppingCart, MessageSquare, Phone, MapPin } from 'lucide-react';
+import Board from './components/Board';
 import heroImg from './assets/hero.png';
 
 // Using the generated images (assuming paths or embedding logic)
@@ -166,22 +167,8 @@ const App: React.FC = () => {
         {/* Customer Center Section */}
         <section id="cs" className="section bg-light">
           <div className="container">
-            <div className="cs-container">
-              <SectionHeading title="고객센터 게시판" subtitle="문의사항이 있으시면 언제든 남겨주세요" />
-              <div className="cs-grid">
-                <div className="cs-card">
-                  <MessageSquare size={32} className="mb-md" />
-                  <h4>1:1 문의하기</h4>
-                  <p className="mt-sm">작품 주문 제작 및 배송 관련 문의</p>
-                  <button className="btn btn-outline mt-md">문의 작성</button>
-                </div>
-                <div className="cs-card">
-                  <Star size={32} className="mb-md" />
-                  <h4>자주 묻는 질문</h4>
-                  <p className="mt-sm">결제, 교환, 환불 안내</p>
-                  <button className="btn btn-outline mt-md">FAQ 보기</button>
-                </div>
-              </div>
+            <div className="cs-container" style={{ display: 'flex', justifyContent: 'center' }}>
+              <Board />
             </div>
           </div>
         </section>
