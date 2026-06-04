@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 // Pages
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Artist from './pages/Artist';
 import Works from './pages/Works';
@@ -15,6 +16,7 @@ import CustomerService from './pages/CustomerService';
 const App: React.FC = () => {
   return (
     <div className="app">
+      <ScrollToTop />
       <Header />
       
       <main>
