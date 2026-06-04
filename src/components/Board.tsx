@@ -85,11 +85,11 @@ const Board: React.FC = () => {
             <table className="board-table">
               <thead>
                 <tr>
-                  <th width="10%">번호</th>
-                  <th width="15%">말머리</th>
-                  <th width="45%">제목</th>
-                  <th width="15%">작성자</th>
-                  <th width="15%">작성일</th>
+                  <th style={{ width: '10%' }}>번호</th>
+                  <th style={{ width: '15%' }}>말머리</th>
+                  <th style={{ width: '45%' }}>제목</th>
+                  <th style={{ width: '15%' }}>작성자</th>
+                  <th style={{ width: '15%' }}>작성일</th>
                 </tr>
               </thead>
               <tbody>
