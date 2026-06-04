@@ -1,5 +1,6 @@
 import React from 'react';
 import { Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
@@ -19,10 +20,10 @@ const Footer: React.FC = () => {
           <div className="footer-links">
             <h4>Quick Links</h4>
             <ul className="mt-md">
-              <li><a href="#artist">작가 소개</a></li>
-              <li><a href="#works">작품 소개</a></li>
-              <li><a href="#shop">판매작품</a></li>
-              <li><a href="#reviews">후기</a></li>
+              <li><Link to="/artist">작가 소개</Link></li>
+              <li><Link to="/works">작품 소개</Link></li>
+              <li><Link to="/shop">판매작품</Link></li>
+              <li><Link to="/reviews">후기</Link></li>
             </ul>
           </div>
 

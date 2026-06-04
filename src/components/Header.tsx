@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag, Search, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,17 +18,17 @@ const Header: React.FC = () => {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container header-container">
         <div className="logo serif">
-          <a href="/">솔빛공방</a>
+          <Link to="/">솔빛공방</Link>
         </div>
 
         <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
           <ul className="nav-list">
-            <li><a href="#artist" onClick={() => setIsMenuOpen(false)}>작가 소개</a></li>
-            <li><a href="#works" onClick={() => setIsMenuOpen(false)}>작품 소개</a></li>
-            <li><a href="#shop" onClick={() => setIsMenuOpen(false)}>판매작품</a></li>
-            <li><a href="#space" onClick={() => setIsMenuOpen(false)}>전시공간</a></li>
-            <li><a href="#reviews" onClick={() => setIsMenuOpen(false)}>후기</a></li>
-            <li><a href="#cs" onClick={() => setIsMenuOpen(false)}>고객센터</a></li>
+            <li><Link to="/artist" onClick={() => setIsMenuOpen(false)}>작가 소개</Link></li>
+            <li><Link to="/works" onClick={() => setIsMenuOpen(false)}>작품 소개</Link></li>
+            <li><Link to="/shop" onClick={() => setIsMenuOpen(false)}>판매작품</Link></li>
+            <li><Link to="/space" onClick={() => setIsMenuOpen(false)}>전시공간</Link></li>
+            <li><Link to="/reviews" onClick={() => setIsMenuOpen(false)}>후기</Link></li>
+            <li><Link to="/cs" onClick={() => setIsMenuOpen(false)}>고객센터</Link></li>
           </ul>
         </nav>
 
