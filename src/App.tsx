@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SectionHeading from './components/SectionHeading';
@@ -12,6 +12,8 @@ const PRODUCT_IMG = "https://images.unsplash.com/photo-1514228742587-6b1558fbed3
 const EXHIBITION_IMG = "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&q=80&w=1200";
 
 const App: React.FC = () => {
+  const [showBoard, setShowBoard] = useState(false);
+
   return (
     <div className="app">
       <Header />
@@ -167,8 +169,33 @@ const App: React.FC = () => {
         {/* Customer Center Section */}
         <section id="cs" className="section bg-light">
           <div className="container">
-            <div className="cs-container" style={{ display: 'flex', justifyContent: 'center' }}>
-              <Board />
+            <div className="cs-container">
+              {!showBoard ? (
+                <>
+                  <SectionHeading title="고객센터 게시판" subtitle="문의사항이 있으시면 언제든 남겨주세요" />
+                  <div className="cs-grid">
+                    <div className="cs-card" onClick={() => setShowBoard(true)} style={{cursor: 'pointer'}}>
+                      <MessageSquare size={32} className="mb-md" />
+                      <h4>1:1 문의하기</h4>
+                      <p className="mt-sm">작품 주문 제작 및 배송 관련 문의</p>
+                      <button className="btn btn-outline mt-md" onClick={(e) => { e.stopPropagation(); setShowBoard(true); }}>문의 작성</button>
+                    </div>
+                    <div className="cs-card" onClick={() => setShowBoard(true)} style={{cursor: 'pointer'}}>
+                      <Star size={32} className="mb-md" />
+                      <h4>자주 묻는 질문</h4>
+                      <p className="mt-sm">결제, 교환, 환불 안내</p>
+                      <button className="btn btn-outline mt-md" onClick={(e) => { e.stopPropagation(); setShowBoard(true); }}>FAQ 보기</button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="fade-in">
+                  <div style={{ marginBottom: '20px' }}>
+                    <button className="btn btn-outline" onClick={() => setShowBoard(false)}>← 뒤로 가기</button>
+                  </div>
+                  <Board />
+                </div>
+              )}
             </div>
           </div>
         </section>
