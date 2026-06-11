@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag, Search, User } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useShop } from '../context/ShopContext';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [localSearch, setLocalSearch] = useState('');
+  const { cart, isCartOpen, setIsCartOpen, setSearchQuery } = useShop();
+  const navigate = useNavigate();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSearchQuery(localSearch);
+    navigate('/shop');
+    setIsSearchOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,11 +45,26 @@ const Header: React.FC = () => {
         </nav>
 
         <div className="header-actions">
-          <button aria-label="Search"><Search size={20} /></button>
-          <button aria-label="Account"><User size={20} /></button>
-          <button aria-label="Cart" className="cart-btn">
+          {isSearchOpen ? (
+            <form onSubmit={handleSearch} className="search-form">
+              <input 
+                type="text" 
+                placeholder="상품 검색..." 
+                value={localSearch}
+                onChange={(e) => setLocalSearch(e.target.value)}
+                autoFocus
+              />
+              <button type="button" onClick={() => setIsSearchOpen(false)}><X size={16} /></button>
+            </form>
+          ) : (
+            <button aria-label="Search" onClick={() => setIsSearchOpen(true)}><Search size={20} /></button>
+          )}
+          
+          <Link to="/login" aria-label="Account" className="user-btn"><User size={20} /></Link>
+          
+          <button aria-label="Cart" className="cart-btn" onClick={() => setIsCartOpen(!isCartOpen)}>
             <ShoppingBag size={20} />
-            <span className="cart-count">0</span>
+            {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
           </button>
           <button className="mobile-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -112,6 +139,25 @@ const Header: React.FC = () => {
         }
         .mobile-toggle {
           display: none;
+        }
+        .search-form {
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid var(--brand-primary);
+          padding-bottom: 2px;
+        }
+        .search-form input {
+          border: none;
+          outline: none;
+          background: transparent;
+          width: 120px;
+          font-family: inherit;
+        }
+        .user-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: inherit;
         }
         @media (max-width: 992px) {
           .nav {

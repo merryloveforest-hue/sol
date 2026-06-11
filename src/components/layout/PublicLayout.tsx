@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../Header';
 import Footer from '../Footer';
+import CartSidebar from '../CartSidebar';
 
 const PublicLayout: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const PublicLayout: React.FC = () => {
       <main>
         <Outlet />
       </main>
+      <CartSidebar />
       <Footer />
       <style>{`
         .app {
