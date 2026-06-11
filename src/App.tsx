@@ -2,6 +2,8 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import PublicLayout from './components/layout/PublicLayout';
+import AdminLayout from './components/layout/AdminLayout';
 
 // Pages
 import ScrollToTop from './components/ScrollToTop';
@@ -12,15 +14,20 @@ import Shop from './pages/Shop';
 import Space from './pages/Space';
 import Reviews from './pages/Reviews';
 import CustomerService from './pages/CustomerService';
+import Login from './pages/Login';
+
+// Admin Pages
+import Dashboard from './pages/admin/Dashboard';
+import Users from './pages/admin/Users';
+import Inquiries from './pages/admin/Inquiries';
 
 const App: React.FC = () => {
   return (
-    <div className="app">
+    <>
       <ScrollToTop />
-      <Header />
-      
-      <main>
-        <Routes>
+      <Routes>
+        {/* Public Routes */}
+        <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/artist" element={<Artist />} />
           <Route path="/works" element={<Works />} />
@@ -28,28 +35,17 @@ const App: React.FC = () => {
           <Route path="/space" element={<Space />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/cs" element={<CustomerService />} />
-        </Routes>
-      </main>
+          <Route path="/login" element={<Login />} />
+        </Route>
 
-      <Footer />
-
-      <style>{`
-        .app {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-        }
-        main {
-          flex: 1;
-          padding-top: 80px; /* offset for fixed header */
-        }
-        .page-container {
-          min-height: 100%;
-        }
-        .bg-white { background-color: var(--bg-white); }
-        .bg-light { background-color: var(--brand-light); }
-      `}</style>
-    </div>
+        {/* Admin Routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="inquiries" element={<Inquiries />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
 
